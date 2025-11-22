@@ -2,7 +2,7 @@
   "$schema": "https://www.raycast.com/schemas/extension.json",
   "name": "open-lyrics",
   "title": "Open Lyrics",
-  "description": "Real time lyric syncing with LRCLIB.",
+  "description": "Real time lyric syncing and search with LRCLIB.",
   "icon": "extension-icon.png",
   "author": "rinmawia_khiangte",
   "owner": "rin-k",
@@ -17,11 +17,18 @@
   "license": "MIT",
   "commands": [
     {
-      "name": "open-lyrics",
-      "title": "open lyrics",
-      "subtitle": "Identify currently playing songs or search a lyrics for a song.",
-      "description": "See what's currently playing on your spotify and bring up the lyrics or search for a song lyric manually",
-      "mode": "no-view"
+      "name": "identify",
+      "title": "Identify Song",
+      "subtitle": "Get lyrics for currently playing song",
+      "description": "Detects currently playing song on Spotify or Apple Music and displays lyrics.",
+      "mode": "view"
+    },
+    {
+      "name": "search",
+      "title": "Search Lyrics",
+      "subtitle": "Search for song lyrics",
+      "description": "Manually search for lyrics by song name.",
+      "mode": "view"
     }
   ],
   "dependencies": {
