@@ -1,15 +1,5 @@
 import { runAppleScript } from "@raycast/utils";
-
-export interface TrackInfo {
-  name: string;
-  artist: string;
-  album: string;
-  duration: number; // in seconds
-  position: number; // in seconds
-  state: "playing" | "paused" | "stopped";
-  app: "Spotify" | "Music";
-  artwork_url?: string;
-}
+import { TrackInfo } from "./music-types";
 
 export async function getSpotifyTrack(): Promise<TrackInfo | null> {
   try {
@@ -33,7 +23,6 @@ export async function getSpotifyTrack(): Promise<TrackInfo | null> {
     if (!result) return null;
     return JSON.parse(result);
   } catch {
-    // console.error("Error getting Spotify track:", error);
     return null;
   }
 }
@@ -59,12 +48,11 @@ export async function getAppleMusicTrack(): Promise<TrackInfo | null> {
     if (!result) return null;
     return JSON.parse(result);
   } catch {
-    // console.error("Error getting Apple Music track:", error);
     return null;
   }
 }
 
-export async function getCurrentTrack(): Promise<TrackInfo | null> {
+export async function getMacOSTrack(): Promise<TrackInfo | null> {
   const spotifyTrack = await getSpotifyTrack();
   if (spotifyTrack && spotifyTrack.state === "playing") {
     return spotifyTrack;

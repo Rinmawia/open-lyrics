@@ -1,7 +1,7 @@
 import { Action, ActionPanel, Detail, List, Image } from "@raycast/api";
 import { usePromise } from "@raycast/utils";
 import { useEffect, useState, useRef } from "react";
-import { getCurrentTrack, TrackInfo } from "./utils/applescript";
+import { getCurrentTrack, TrackInfo } from "./utils/current-song";
 import { getLyrics, LrcLibTrack, parseLrc, LrcLine } from "./utils/lrclib";
 import { getArtwork } from "./utils/artwork";
 
@@ -130,9 +130,13 @@ function LyricsView({
   }, [track.state]);
 
   // Find current line index
+  // Shift lyrics 0.5s earlier to compensate for potential delays
+  const SYNC_OFFSET = 0.6;
+  const syncedPosition = currentPosition + SYNC_OFFSET;
+
   const currentLineIndex = parsedLyrics.findIndex((line) => {
     const nextLine = parsedLyrics[parsedLyrics.indexOf(line) + 1];
-    return line.time <= currentPosition && (!nextLine || nextLine.time > currentPosition);
+    return line.time <= syncedPosition && (!nextLine || nextLine.time > syncedPosition);
   });
 
   const currentLine = currentLineIndex !== -1 ? parsedLyrics[currentLineIndex] : null;
