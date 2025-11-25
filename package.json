@@ -4,6 +4,8 @@
   "title": "Open Lyrics",
   "description": "Real time lyric syncing and search with LRCLIB.",
   "icon": "extension-icon.png",
+  "author": "rinmawia_khiangte",
+  "owner": "rin-k",
   "platforms": [
     "macOS",
     "Windows"
