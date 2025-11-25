@@ -1,4 +1,4 @@
-import { platform } from "os";
+import { getPlatform } from "./platform";
 import { getMacOSTrack } from "./macos-adapter";
 import { getWindowsTrack } from "./windows-adapter";
 import { TrackInfo } from "./music-types";
@@ -6,7 +6,7 @@ import { TrackInfo } from "./music-types";
 export type { TrackInfo };
 
 export async function getCurrentTrack(): Promise<TrackInfo | null> {
-  const osPlatform = platform();
+  const osPlatform = getPlatform();
 
   if (osPlatform === "darwin") {
     return getMacOSTrack();

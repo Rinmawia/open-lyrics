@@ -11,7 +11,6 @@ export interface LrcLibTrack {
   syncedLyrics?: string;
 }
 
-
 const BASE_URL = "https://lrclib.net/api";
 
 const osPlatform = platform();
@@ -19,7 +18,6 @@ const osPlatform = platform();
 if (osPlatform === "win32") {
   process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 }
-
 
 export async function getLyrics(
   trackName: string,

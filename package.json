@@ -4,8 +4,6 @@
   "title": "Open Lyrics",
   "description": "Real time lyric syncing and search with LRCLIB.",
   "icon": "extension-icon.png",
-  "author": "rinmawia_khiangte",
-  "owner": "rin-k",
   "platforms": [
     "macOS",
     "Windows"
@@ -46,9 +44,9 @@
   "scripts": {
     "build": "ray build",
     "dev": "ray develop",
-    "fix-lint": "ray lint --fix",
-    "lint": "ray lint",
-    "prepublishOnly": "echo \"\\n\\nIt seems like you are trying to publish the Raycast extension to npm.\\n\\nIf you did intend to publish it to npm, remove the \\`prepublishOnly\\` script and rerun \\`npm publish\\` again.\\nIf you wanted to publish it to the Raycast Store instead, use \\`npm run publish\\` instead.\\n\\n\" && exit 1",
+    "fix-lint": "set NODE_TLS_REJECT_UNAUTHORIZED=0 && ray lint --fix",
+    "lint": "set NODE_TLS_REJECT_UNAUTHORIZED=0 && ray lint",
+    "prepublishOnly": "echo \"\n\nIt seems like you are trying to publish the Raycast extension to npm.\n\nIf you did intend to publish it to npm, remove the `prepublishOnly` script and rerun `npm publish` again.\nIf you wanted to publish it to the Raycast Store instead, use `npm run publish` instead.\n\n\" && exit 1",
     "publish": "set NODE_TLS_REJECT_UNAUTHORIZED=0 && npx @raycast/api@latest publish"
   }
 }

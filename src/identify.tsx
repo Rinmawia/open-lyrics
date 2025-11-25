@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import { getCurrentTrack, TrackInfo } from "./utils/current-song";
 import { getLyrics, LrcLibTrack, parseLrc, LrcLine } from "./utils/lrclib";
 import { getArtwork } from "./utils/artwork";
+import { getPlatform } from "./utils/platform";
 
 export default function Command() {
   const { data: currentTrack, isLoading: isLoadingTrack, revalidate: revalidateTrack } = usePromise(getCurrentTrack);
@@ -131,7 +132,7 @@ function LyricsView({
 
   // Find current line index
   // Shift lyrics 0.5s earlier to compensate for potential delays
-  const SYNC_OFFSET = 0.6;
+  const SYNC_OFFSET = getPlatform() === "win32" ? 1 : 0.6;
   const syncedPosition = currentPosition + SYNC_OFFSET;
 
   const currentLineIndex = parsedLyrics.findIndex((line) => {
