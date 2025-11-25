@@ -153,9 +153,9 @@ function LyricsView({
     markdown = `## ${track.name} - ${track.artist}\n\n*Lyrics not found*`;
   } else if (parsedLyrics.length > 0) {
     markdown += verticalSpacing;
-    if (prevLine) markdown += `# ${prevLine.text}\n\n`;
+    if (prevLine) markdown += `# ${prevLine.text || "..."}\n\n`;
     markdown += `# ${currentLine?.text || "..."}\n\n`;
-    if (nextLine) markdown += `# ${nextLine.text}`;
+    if (nextLine) markdown += `# ${nextLine.text || "..."}`;
   } else {
     markdown = `## ${track.name} - ${track.artist}\n\n${lyrics.plainLyrics || "*Instrumental*"}`;
   }

@@ -11,7 +11,7 @@ export interface LrcLibTrack {
 
 const BASE_URL = "https://lrclib.net/api";
 
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+// process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 export async function getLyrics(
   trackName: string,
