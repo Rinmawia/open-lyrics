@@ -5,11 +5,13 @@ export interface LrcLibTrack {
   albumName: string;
   duration: number;
   instrumental: boolean;
-  plainLyrics: string;
-  syncedLyrics: string;
+  plainLyrics?: string;
+  syncedLyrics?: string;
 }
 
 const BASE_URL = "https://lrclib.net/api";
+
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 export async function getLyrics(
   trackName: string,
@@ -25,7 +27,9 @@ export async function getLyrics(
       duration: duration.toString(),
     });
 
-    const response = await fetch(`${BASE_URL}/get?${params.toString()}`);
+    const url = `${BASE_URL}/get?${params.toString()}`;
+    const response = await fetch(url);
+
     if (!response.ok) {
       if (response.status === 404) return null;
       throw new Error(`LRCLIB API error: ${response.statusText}`);
@@ -40,15 +44,11 @@ export async function getLyrics(
 
 export async function searchLyrics(query: string): Promise<LrcLibTrack[]> {
   try {
-    const params = new URLSearchParams({
-      q: query,
-    });
-
+    const params = new URLSearchParams({ q: query });
     const response = await fetch(`${BASE_URL}/search?${params.toString()}`);
     if (!response.ok) {
       throw new Error(`LRCLIB API error: ${response.statusText}`);
     }
-
     return (await response.json()) as LrcLibTrack[];
   } catch (error) {
     console.error("Error searching lyrics:", error);
